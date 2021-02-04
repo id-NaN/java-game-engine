@@ -32,11 +32,11 @@ public class MainThread extends Thread {
 			long waitTime = game.timing.nsPerTick - (System.nanoTime() - timeNow);
 			try {
 				Thread.sleep(waitTime / 1_000_000);
-			} catch (InterruptedException e) {
+			} catch (InterruptedException | IllegalArgumentException e) {
 				e.printStackTrace();
 			}
 
-			// update deltaTime
+            // update deltaTime
 			game.timing.deltaTime = (System.nanoTime() - timeNow) / 1_000_000_000d;
 		}
 	}
