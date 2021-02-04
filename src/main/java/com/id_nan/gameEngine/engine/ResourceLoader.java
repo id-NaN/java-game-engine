@@ -15,7 +15,7 @@ public class ResourceLoader {
 		try {
 			return Paths.get(this.getClass().getResource(name).toURI()).toFile();
 		} catch (Exception e) {
-			System.out.println(String.format("resource \"%s\" could not be loaded", name));
+			System.out.printf("resource \"%s\" could not be loaded%n", name);
 			return null;
 		}
 	}

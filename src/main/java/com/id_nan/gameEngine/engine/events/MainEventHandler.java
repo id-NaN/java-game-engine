@@ -38,7 +38,7 @@ public class MainEventHandler implements WindowListener, WindowFocusListener, Wi
 	private final GameInstance game;
 
 	public MainEventHandler(GameInstance game) {
-		registeredListeners = new LinkedList<EventListener>();
+		registeredListeners = new LinkedList<>();
 		this.game = game;
 	}
 

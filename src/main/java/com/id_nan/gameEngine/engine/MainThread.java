@@ -7,7 +7,9 @@ public class MainThread extends Thread {
 		this.game = game;
 	}
 
+	@SuppressWarnings("BusyWait")
 	@Override
+
 	public void run() {
 		int TPSCounter = 0;
 		long timeNow;

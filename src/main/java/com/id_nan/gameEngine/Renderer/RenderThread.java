@@ -11,6 +11,7 @@ public class RenderThread extends Thread {
 		this.game = game;
 	}
 
+	@SuppressWarnings("BusyWait")
 	@Override
 	public void run() {
 		int FPSCounter = 0;

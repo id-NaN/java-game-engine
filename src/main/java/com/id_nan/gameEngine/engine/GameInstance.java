@@ -24,7 +24,7 @@ public class GameInstance {
 	public GameInstance() {
 		configDocument = new ResourceLoader().getXMLFile("/engineConfig/config.xml");
 		timing = new TimeManager(this);
-		uiObjects = new ArrayList<UIObject>();
+		uiObjects = new ArrayList<>();
 		sceneLoader = new SceneLoader(this);
 		defaultValues = new DefaultValues(this);
 		eventHandler = new MainEventHandler(this);

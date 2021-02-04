@@ -44,10 +44,7 @@ public class BasicButton extends UIObject implements EventListener {
 		} catch (ClassCastException e) {
 			return;
 		}
-		if (MathUtil.isBetween(drawRectangle.x, mouseEvent.getX(), drawRectangle.x + drawRectangle.width) && MathUtil.isBetween(drawRectangle.y, mouseEvent.getY(), drawRectangle.y + drawRectangle.height)) {
-			hovering = true;
-		} else {
-			hovering = false;
-		}
+		//noinspection SuspiciousNameCombination
+		hovering = MathUtil.isBetween(drawRectangle.x, mouseEvent.getX(), drawRectangle.x + drawRectangle.width) && MathUtil.isBetween(drawRectangle.y, mouseEvent.getY(), drawRectangle.y + drawRectangle.height);
 	}
 }

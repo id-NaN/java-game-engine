@@ -28,16 +28,16 @@ public class SceneLoader {
 				try {
 					Class<?> objectClass = Class.forName(classPath);
 					if (!objectClass.isAnnotationPresent(SceneLoadable.class)) {
-						System.out.println(String.format("UIObject \"%s\" not loadable from scene", classPath));
+						System.out.printf("UIObject \"%s\" not loadable from scene%n", classPath);
 						continue;
 					}
 					Constructor<?> constructor = objectClass.getConstructor(GameInstance.class, String.class);
 					game.uiObjects.add((UIObject)constructor.newInstance(game, node.getTextContent()));
 				} catch (ClassNotFoundException e) {
-					System.out.println(String.format("unable to find UIObject \"%s\"", classPath));
+					System.out.printf("unable to find UIObject \"%s\"%n", classPath);
 					e.printStackTrace();
 				} catch (NoSuchMethodException e) {
-					System.out.println(String.format("unable to call constructor of \"%s\"", classPath));
+					System.out.printf("unable to call constructor of \"%s\"%n", classPath);
 					e.printStackTrace();
 				} catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
 					e.printStackTrace();
