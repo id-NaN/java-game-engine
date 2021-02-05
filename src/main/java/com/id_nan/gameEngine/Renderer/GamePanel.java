@@ -2,6 +2,7 @@ package com.id_nan.gameEngine.Renderer;
 
 import com.id_nan.gameEngine.UIObjects.UIObject;
 import com.id_nan.gameEngine.engine.GameInstance;
+import com.id_nan.gameEngine.engine.events.MainEventHandler;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -37,7 +38,12 @@ public class GamePanel extends Canvas {
 		}
 
 		// get graphics
-		Graphics2D graphics = (Graphics2D) bufferStrategy.getDrawGraphics();
+		Graphics2D graphics;
+		try {
+			graphics = (Graphics2D) bufferStrategy.getDrawGraphics();
+		} catch (IllegalStateException e) {
+			return;
+		}
 
 		// clear screen if needed
 		if (clearScreen) {

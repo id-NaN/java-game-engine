@@ -39,10 +39,12 @@ public class RenderThread extends Thread {
 
 			// wait for next tick
 			long waitTime = game.timing.nsPerFrame - (System.nanoTime() - timeNow);
-			try {
-				Thread.sleep(waitTime / 1_000_000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			if (waitTime > 0) {
+				try {
+					Thread.sleep(waitTime / 1_000_000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

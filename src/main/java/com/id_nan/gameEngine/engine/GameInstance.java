@@ -9,6 +9,7 @@ import org.w3c.dom.Node;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameInstance {
 	// the config file
@@ -37,7 +38,7 @@ public class GameInstance {
 		uiObjects = new ArrayList<>();
 		sceneLoader = new SceneLoader(this);
 		defaultValues = new DefaultValues(this);
-		eventHandler = new MainEventHandler();
+		eventHandler = new MainEventHandler(this);
 
 		// load scene
 		sceneLoader.loadScene(loadFromConfig("game/startScene"));

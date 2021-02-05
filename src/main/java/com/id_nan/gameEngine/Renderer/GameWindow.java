@@ -25,7 +25,7 @@ public class GameWindow extends JFrame {
 		setFullscreen(Boolean.parseBoolean(game.loadFromConfig("renderer/frame/fullScreen")));
 		setResizable(Boolean.parseBoolean(game.loadFromConfig("renderer/frame/resizable")));
 
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 		panel = new GamePanel(game);
 

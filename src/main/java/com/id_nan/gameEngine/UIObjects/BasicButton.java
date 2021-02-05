@@ -9,7 +9,8 @@ import com.id_nan.gameEngine.util.MathUtil;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-// example for an UIObject utilising events and argument string
+// example for an UIObject utilising events and the argument string
+// detects if you are hovering above it and fills itself with grey if you are
 @SceneLoadable
 public class BasicButton extends UIObject implements EventListener {
 	private Rectangle drawRectangle;
@@ -39,13 +40,16 @@ public class BasicButton extends UIObject implements EventListener {
 
 	@Override
 	public void onEvent(int eventID, Object event) {
-		MouseEvent mouseEvent;
-		try {
-			mouseEvent = (MouseEvent) event;
-		} catch (ClassCastException e) {
-			return;
+		if (eventID == MainEventHandler.EVENT_MOUSE_MOVE) {
+
+			MouseEvent mouseEvent;
+			try {
+				mouseEvent = (MouseEvent) event;
+			} catch (ClassCastException e) {
+				return;
+			}
+			//noinspection SuspiciousNameCombination
+			hovering = MathUtil.isBetween(drawRectangle.x, mouseEvent.getX(), drawRectangle.x + drawRectangle.width) && MathUtil.isBetween(drawRectangle.y, mouseEvent.getY(), drawRectangle.y + drawRectangle.height);
 		}
-		//noinspection SuspiciousNameCombination
-		hovering = MathUtil.isBetween(drawRectangle.x, mouseEvent.getX(), drawRectangle.x + drawRectangle.width) && MathUtil.isBetween(drawRectangle.y, mouseEvent.getY(), drawRectangle.y + drawRectangle.height);
 	}
 }
