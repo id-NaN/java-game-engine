@@ -7,6 +7,7 @@ import java.util.LinkedList;
 
 public class MainEventHandler implements WindowListener, WindowFocusListener, WindowStateListener, MouseWheelListener, MouseMotionListener, MouseListener, KeyListener {
 
+	// create human readable event id keys
 	public static final int EVENT_MOUSE_CLICK = 0;
 	public static final int EVENT_MOUSE_PRESS = 1;
 	public static final int EVENT_MOUSE_RELEASE = 2;
@@ -19,8 +20,7 @@ public class MainEventHandler implements WindowListener, WindowFocusListener, Wi
 	public static final int EVENT_WINDOW_GAIN_FOCUS = 8;
 	public static final int EVENT_WINDOW_LOOSE_FOCUS = 9;
 	public static final int EVENT_WINDOW_OPEN = 10;
-	public static final int EVENT_WINDOW_CLOSING = 11;
-	public static final int EVENT_WINDOW_CLOSED = 12;
+	public static final int EVENT_GAME_EXITED = 12;
 	public static final int EVENT_WINDOW_ICONIFY = 13;
 	public static final int EVENT_WINDOW_DEICONIFY = 14;
 	public static final int EVENT_WINDOW_ACTIVATED = 15;
@@ -33,30 +33,32 @@ public class MainEventHandler implements WindowListener, WindowFocusListener, Wi
 
 	private int currentID = 20;
 
-	private LinkedList<EventListener> registeredListeners;
+	private final LinkedList<EventListener> registeredListeners;
 
-	private final GameInstance game;
-
-	public MainEventHandler(GameInstance game) {
+	// create event listener register
+	public MainEventHandler() {
 		registeredListeners = new LinkedList<>();
-		this.game = game;
 	}
 
+	// add listener
 	public void registerListener(EventListener listener) {
 		registeredListeners.add(listener);
 	}
 
+	// calls every event listener wit event specified by id
 	public void handleEvent(int eventID, Object event) {
 		for (EventListener listener : registeredListeners) {
 			listener.onEvent(eventID, event);
 		}
 	}
 
+	// returns unused custom event-id for use in custom events
 	public int newEvent() {
 		currentID++;
 		return currentID;
 	}
 
+	// respond to all standard AWT events
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		handleEvent(EVENT_MOUSE_CLICK, e);
@@ -114,12 +116,12 @@ public class MainEventHandler implements WindowListener, WindowFocusListener, Wi
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-		handleEvent(EVENT_WINDOW_CLOSING, e);
+
 	}
 
 	@Override
 	public void windowClosed(WindowEvent e) {
-		handleEvent(EVENT_WINDOW_CLOSED, e);
+
 	}
 
 	@Override

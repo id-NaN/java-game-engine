@@ -1,11 +1,14 @@
 package com.id_nan.gameEngine.UIObjects;
 
 import com.id_nan.gameEngine.engine.GameInstance;
+import com.id_nan.gameEngine.engine.SceneLoadable;
 
 import java.awt.*;
 
+// example for an UIObject utilising argument string
+@SceneLoadable
 public class TestObject extends UIObject {
-	private Rectangle rectangle;
+	private final Rectangle rectangle;
 
 	public TestObject(GameInstance game, String argument) {
 		super(game, argument);

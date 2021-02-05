@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <scene>
-	<BasicButton>200,100,40,10</BasicButton>
+	<BasicButton>200, 100, 80, 20</BasicButton>
+	<TestObject>100, 200, 50, 20</TestObject>
 </scene>

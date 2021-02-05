@@ -3,6 +3,7 @@ package com.id_nan.gameEngine.engine;
 public class MainThread extends Thread {
 	GameInstance game;
 
+	// save gameInstance pointer
 	public MainThread(GameInstance game) {
 		this.game = game;
 	}
@@ -11,10 +12,15 @@ public class MainThread extends Thread {
 	@Override
 
 	public void run() {
+		// count ticks to announce every second
 		int TPSCounter = 0;
+		// create current time variable
 		long timeNow;
+		// save the time at which the last tick happened
 		long lastUpdateTime = System.nanoTime();
+		//start main loop
 		while (game.running) {
+			// save time at start of tick
 			timeNow = System.nanoTime();
 
 			// update TPS value
@@ -30,12 +36,13 @@ public class MainThread extends Thread {
 
 			// wait for next tick
 			long waitTime = game.timing.nsPerTick - (System.nanoTime() - timeNow);
-			try {
-				Thread.sleep(waitTime / 1_000_000);
-			} catch (InterruptedException | IllegalArgumentException e) {
-				e.printStackTrace();
+			if (waitTime > 0) {
+				try {
+					Thread.sleep(waitTime / 1_000_000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
-
             // update deltaTime
 			game.timing.deltaTime = (System.nanoTime() - timeNow) / 1_000_000_000d;
 		}

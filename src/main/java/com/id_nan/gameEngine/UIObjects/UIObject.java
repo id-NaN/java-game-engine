@@ -15,6 +15,8 @@ public abstract class UIObject {
 		this.game = game;
 	}
 
+	// called every tick
 	public void tick() {}
+	// called every frame
 	public void draw(Graphics2D graphics) {}
 }

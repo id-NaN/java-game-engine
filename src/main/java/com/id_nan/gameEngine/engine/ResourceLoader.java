@@ -11,6 +11,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Paths;
 
 public class ResourceLoader {
+	// load any file from resources
 	public File getFile(String name) {
 		try {
 			return Paths.get(this.getClass().getResource(name).toURI()).toFile();
@@ -20,6 +21,7 @@ public class ResourceLoader {
 		}
 	}
 
+	// load xml files from resources
 	public Document getXMLFile(String name) {
 		File file = getFile(name);
 		try {
